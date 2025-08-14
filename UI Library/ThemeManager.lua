@@ -90,7 +90,7 @@ local ThemeManager = {} do
 		table.sort(ThemesArray, function(a, b) return self.BuiltInThemes[a][1] < self.BuiltInThemes[b][1] end)
 
 		groupbox:AddDivider()
-		groupbox:AddDropdown('ThemeManager_ThemeList', { Text = 'Included Themes', Values = ThemesArray, Default = 1 })
+		groupbox:AddDropdown('ThemeManager_ThemeList', { Text = 'Included themes', Values = ThemesArray, Default = 1 })
 
 		groupbox:AddButton('Set as default', function()
 			self:SaveDefault(Options.ThemeManager_ThemeList.Value)
@@ -103,7 +103,7 @@ local ThemeManager = {} do
 
 		groupbox:AddDivider()
 		groupbox:AddInput('ThemeManager_CustomThemeName', { Text = 'Theme name' })
-		groupbox:AddDropdown('ThemeManager_CustomThemeList', { Text = 'Saved Themes', Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 })
+		groupbox:AddDropdown('ThemeManager_CustomThemeList', { Text = 'Saved themes', Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 })
 		groupbox:AddDivider()
 		
 		groupbox:AddButton('Save', function() 
@@ -115,7 +115,7 @@ local ThemeManager = {} do
 			self:ApplyTheme(Options.ThemeManager_CustomThemeList.Value) 
 		end)
 
-		groupbox:AddButton('Refresh Saved', function()
+		groupbox:AddButton('Refresh saved', function()
 			Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
 			Options.ThemeManager_CustomThemeList:SetValue(nil)
 		end)
