@@ -3497,6 +3497,12 @@ local RightSide = Library:Create('ScrollingFrame', {
         end;
 
         function Tab:AddLeftTabbox(Name)
+
+function Tab:AddCenterTabbox(Name)
+    local Tabbox = self:AddTabbox({ Side = 3, Name = Name })
+    return Tabbox
+end
+
             return Tab:AddTabbox({ Name = Name, Side = 1; });
         end;
 
