@@ -56,8 +56,14 @@ mt.__index = newcclosure(function(self, key)
     end
 
     --FOV
-    if FovSpoof[self] and key == "FieldOfView" then
-        return 70
+    if FovSpoof[self] then
+        if key == "FieldOfView" then
+            return 70
+        elseif key == "DiagonalFieldOfView" then
+            return 127.76887512207031
+        elseif key == "MaxAxisFieldOfView" then
+            return 102.44786071777344
+        end
     end
 
     --Fog
@@ -118,11 +124,13 @@ mt.__newindex = newcclosure(function(self, key, value)
     end
 
     --FOV
-    if FovSpoof[self] and key == "FieldOfView" then
-        if checkcaller() then
-            return oldNewIndex(self, key, value)
-        else
-            return
+    if FovSpoof[self] then
+        if (key == "FieldOfView" or key == "DiagonalFieldOfView" or key == "MaxAxisFieldOfView") then
+            if checkcaller() then
+                return oldNewIndex(self, key, value)
+            else
+                return
+            end
         end
     end
 
